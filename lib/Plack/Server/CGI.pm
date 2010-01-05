@@ -21,12 +21,12 @@ sub run {
     $env{'psgi.multiprocess'} = 1==1;
     $env{'psgi.run_once'}     = 1==1;
     my $res = $app->(\%env);
-    print "Status: $res->[0]\n";
+    print "Status: $res->[0]\r\n";
     my $headers = $res->[1];
     while (my ($k, $v) = splice(@$headers, 0, 2)) {
-        print "$k: $v\n";
+        print "$k: $v\r\n";
     }
-    print "\n";
+    print "\r\n";
 
     my $body = $res->[2];
     my $cb = sub { print STDOUT $_[0] };
